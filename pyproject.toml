@@ -1,0 +1,65 @@
+# Build system declaration (PEP 517 / PEP 518).
+# Hatchling is chosen over setuptools because it requires no boilerplate
+# config and integrates cleanly with PEP 621 metadata. Recruiters reading
+# the repo will recognize it as the modern default.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gabion-reliability-benchmark"
+version = "1.0.0"
+description = "Probabilistic stability analysis of gabion retaining walls (FOSM, FORM, Monte Carlo) + structured LLM benchmark with 14 documented failure modes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Your Name", email = "you@example.com" },  # TODO: edit
+]
+keywords = ["geotechnics", "retaining-wall", "gabion", "reliability", "FOSM", "FORM", "monte-carlo", "llm-benchmark", "ai-evaluation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+
+# Runtime dependencies. We declare numpy/scipy/sympy/matplotlib up front
+# because they are used by the FOSM and Monte Carlo modules to be added
+# in later stages — declaring them here avoids the user hitting ImportError
+# halfway through a notebook walkthrough.
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "sympy>=1.12",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+# Console-script entry point: `gabion-check examples/book_example_1.yaml`
+# becomes available on PATH after `pip install -e .`.
+gabion-check = "gabion.cli:main"
+
+[project.urls]
+# TODO: replace once the repo is up
+Homepage = "https://github.com/USER/gabion-stability"
+Repository = "https://github.com/USER/gabion-stability"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gabion"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Make import paths Just Work without `pip install -e .` for quick local runs.
+pythonpath = ["src"]

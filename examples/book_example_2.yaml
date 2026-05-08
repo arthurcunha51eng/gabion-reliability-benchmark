@@ -1,0 +1,33 @@
+# Canonical reference scenario for gabion-stability v0.1.
+#
+# This file mirrors WallScenario.outside_flat_reference() exactly. With
+# the deterministic engine constrained to D=2.5 m (gabion-check
+# --d-override 2.5), it reproduces GAWACWIN's published outputs to four
+# significant figures. See docs/baseline_capture.md.
+
+# Stone fill of the gabion baskets.
+gabion:
+  gamma_g: 25.0           # stone unit weight γ_g [kN/m³]
+  n: 0.30                 # porosity (void fraction) [-]
+  geotex_reduction: 0.0   # δ-reduction by geotextile interface [-]
+
+# Stepped-trapezoidal wall section.  Each layer is 1.0 m tall.
+geometry:
+  layer_lengths: [2.5, 2.0, 1.5, 1.0]   # widths from base to top [m]
+  beta: 6.0                        # batter from vertical [°]
+
+# Backfill soil (Mohr–Coulomb, drained / effective stress).
+backfill:
+  gamma: 18.0    # unit weight γ [kN/m³]
+  phi: 30.0      # friction angle φ' [°]
+  c: 0.0         # cohesion c' [kPa]
+
+# Foundation soil (drives base friction in the sliding check).
+foundation:
+  gamma: 18.0
+  phi: 30.0
+  c: 0.0
+
+# Loading.
+q: 10.0          # surcharge on the backfill surface [kN/m²]
+q_adm: 200.0     # allowable bearing capacity at the foundation level [kPa]

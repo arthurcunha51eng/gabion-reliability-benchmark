@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "gabion-reliability-benchmark"
+type: software
+
+authors:
+  - family-names: "Cunha da Silva"
+    given-names: "Arthur"
+
+version: "1.0.0"
+doi: "10.5281/zenodo.20100101"
+date-released: "2026-05-09"
+
+license: MIT

@@ -394,3 +394,12 @@ for mode in ('sliding', 'overturning'):
 * **Maccaferri.** *Gabion Retaining Walls Design Manual* (GAWACWIN) —
   software output used as cross-validation reference for the
   deterministic engine.
+
+  ## Citation
+
+If you use this repository in academic work, please cite:
+
+Arthur Cunha da Silva (2026).
+*gabion-reliability-benchmark* (Version 1.0.0) [Computer software].
+Zenodo. https://doi.org/10.5281/zenodo.20100101
+  
